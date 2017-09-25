@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[function validateInput() {
+   
+   var short_description = gel("short_description").value;
+   short_description = trim(short_description);
+   if (short_description == "") {
+      //If comments are empty stop submission
+      alert("Please provide a short description to submit the dialog.");
+      return false;
+   }
+   //If comments are not empty do this...
+	GlideDialogWindow.get().destroy(); //Close the dialog window
+	
+	var ga = new GlideAjax('JIRA');
+	ga.addParam('sysparm_name', 'create');
+	ga.addParam('sysparm_incident_number', gel("inc_number").value);
+	ga.addParam('sysparm_summary', gel("short_description").value);
+	ga.addParam('sysparm_incident_sys_id', gel("sys_id").value);
+	ga.getXML(JiraParse);
+ 
+	function JiraParse(response) {
+		var answer = response.responseXML.documentElement.getAttribute("answer");
+// 		alert(answer);
+// 		g_form.setValue("x_123107_jan_s_jir_jira", answer);
+	}
+}]]></client_script>
+        <description>Create a JIRA Software Issue</description>
+        <direct>false</direct>
+        <endpoint>x_123107_jan_s_jir_Create_JIRA_Software_Issue.do</endpoint>
+        <html><![CDATA[<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<g:ui_form>
+		<g:evaluate var="jvar_inc_sys_id"
+		expression="RP.getWindowProperties().inc_sys_id" />
+		<g:evaluate var="jvar_inc_number"
+		expression="RP.getWindowProperties().inc_number" />
+		<g:evaluate var="jvar_inc_short_description"
+		expression="RP.getWindowProperties().inc_short_description" /> 
+		<table width="100%">
+			<tr><td>
+					<g:ui_input_field label="Incident number" name="inc_number" value="${jvar_inc_number}" size="50"/>
+			</td></tr>
+			<tr><td>
+				         <g:ui_multiline_input_field name="short_description" id="short_description" label="Short description" value="${jvar_inc_short_description}" mandatory="true" />
+			</td></tr>
+			<tr><td>
+				<g:ui_input_field label="Sys ID" name="sys_id" value="${jvar_inc_sys_id}" size="50"/>
+			</td></tr>
+		</table>
+<!-- 		<button type="submit" id="submit" name="submit" value="TRUE" onclick="return Waiting();" style='padding:2px;'>Create Issue</button> -->
+		<g:dialog_buttons_ok_cancel ok="return validateInput()" ok_type="button" cancel_type="button" />
+<div id="waiting" style="visibility: hidden;">MID Server Processing...<br/></div>
+	</g:ui_form>
+</j:jelly>
+]]></html>
+        <name>Create_JIRA_Software_Issue</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-09-23 15:23:06</sys_created_on>
+        <sys_id>cd4cd08f0f91030053083b8ce1050e15</sys_id>
+        <sys_mod_count>87</sys_mod_count>
+        <sys_name>Create_JIRA_Software_Issue</sys_name>
+        <sys_package display_value="Jan's JIRA integration" source="x_123107_jan_s_jir">72b91ccb0f91030053083b8ce1050e06</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Jan's JIRA integration">72b91ccb0f91030053083b8ce1050e06</sys_scope>
+        <sys_update_name>sys_ui_page_cd4cd08f0f91030053083b8ce1050e15</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-09-25 15:16:33</sys_updated_on>
+    </sys_ui_page>
+</record_update>

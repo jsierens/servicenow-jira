@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name/>
+        <active>true</active>
+        <client>true</client>
+        <comments>Create a JIRA Software Issue from an incident</comments>
+        <condition/>
+        <form_action>true</form_action>
+        <form_button>true</form_button>
+        <form_context_menu>false</form_context_menu>
+        <form_link>false</form_link>
+        <form_style/>
+        <hint/>
+        <list_action>false</list_action>
+        <list_banner_button>false</list_banner_button>
+        <list_button>false</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <name>Create JIRA</name>
+        <onclick>popupCreateJIRA()</onclick>
+        <order>100</order>
+        <script><![CDATA[function popupCreateJIRA() {
+    var dialog = new GlideDialogWindow("x_123107_jan_s_jir_Create_JIRA_Software_Issue");
+    dialog.setTitle("Create JIRA Software Issue");
+	dialog.setSize(750,300);
+    dialog.setPreference("inc_sys_id", g_form.getUniqueValue());
+	dialog.setPreference("inc_number", g_form.getValue('number'));
+ 	dialog.setPreference("inc_short_description", g_form.getValue('short_description'));
+    dialog.render();
+}
+
+]]></script>
+        <show_insert>true</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-09-24 07:27:03</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>b267fb8b0f19030053083b8ce1050e9b</sys_id>
+        <sys_mod_count>33</sys_mod_count>
+        <sys_name>Create JIRA</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Jan's JIRA integration" source="x_123107_jan_s_jir">72b91ccb0f91030053083b8ce1050e06</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Jan's JIRA integration">72b91ccb0f91030053083b8ce1050e06</sys_scope>
+        <sys_update_name>sys_ui_action_b267fb8b0f19030053083b8ce1050e9b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-09-25 05:51:18</sys_updated_on>
+        <table>incident</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>false</ui16_compatible>
+    </sys_ui_action>
+</record_update>

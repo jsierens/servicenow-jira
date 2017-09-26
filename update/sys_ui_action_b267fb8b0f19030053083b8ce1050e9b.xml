@@ -4,7 +4,7 @@
         <action_name/>
         <active>true</active>
         <client>true</client>
-        <comments>Create a JIRA Software Issue from an incident</comments>
+        <comments>Opens UI Page "Create_JIRA_Software_Issue" in a dialog to create a JIRA Software Issue from an incident.</comments>
         <condition/>
         <form_action>true</form_action>
         <form_button>true</form_button>
@@ -44,7 +44,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>b267fb8b0f19030053083b8ce1050e9b</sys_id>
-        <sys_mod_count>33</sys_mod_count>
+        <sys_mod_count>34</sys_mod_count>
         <sys_name>Create JIRA</sys_name>
         <sys_overrides/>
         <sys_package display_value="Jan's JIRA integration" source="x_123107_jan_s_jir">72b91ccb0f91030053083b8ce1050e06</sys_package>
@@ -52,7 +52,7 @@
         <sys_scope display_value="Jan's JIRA integration">72b91ccb0f91030053083b8ce1050e06</sys_scope>
         <sys_update_name>sys_ui_action_b267fb8b0f19030053083b8ce1050e9b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-09-25 05:51:18</sys_updated_on>
+        <sys_updated_on>2017-09-25 18:56:49</sys_updated_on>
         <table>incident</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

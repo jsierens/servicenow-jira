@@ -2,7 +2,9 @@
 <record_update table="sys_ui_page">
     <sys_ui_page action="INSERT_OR_UPDATE">
         <category>general</category>
-        <client_script><![CDATA[function validateInput() {
+        <client_script><![CDATA[loadMetaData();
+
+function validateInput() {
    
    var short_description = gel("short_description").value;
    short_description = trim(short_description);
@@ -25,6 +27,33 @@
 		var answer = response.responseXML.documentElement.getAttribute("answer");
 // 		alert(answer);
 // 		g_form.setValue("x_123107_jan_s_jir_jira", answer);
+	}
+}
+
+function loadMetaData() {
+	var ga = new GlideAjax('JIRA');
+	ga.addParam('sysparm_name', 'createMeta');
+	ga.addParam('sysparm_incident_number', gel("inc_number").value);
+	ga.addParam('sysparm_summary', gel("short_description").value);
+	ga.addParam('sysparm_incident_sys_id', gel("sys_id").value);
+	ga.getXML(JiraParse);
+ 
+	function JiraParse(response) {
+		var answer = response.responseXML.documentElement.getAttribute("answer");
+//		g_form.addInfoMessage(answer); //JSON String
+
+		// PARSE THE JSON RESPONSE
+		var parsed = JSON.parse(answer);
+		var projects = parsed.projects;
+		
+		g_form.addInfoMessage("Number of projects: "+ projects.length);
+
+		for(var i = 0; i < projects.length; i++) {
+			var id = projects[i].id;
+			var key = projects[i].key;
+			var name = projects[i].name;
+			g_form.addInfoMessage("project id: "+ id + "<br>key: "+ key +"<br>name: " + name);
+		}
 	}
 }]]></client_script>
         <description>Create a JIRA Software Issue</description>
@@ -60,13 +89,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-09-23 15:23:06</sys_created_on>
         <sys_id>cd4cd08f0f91030053083b8ce1050e15</sys_id>
-        <sys_mod_count>92</sys_mod_count>
+        <sys_mod_count>110</sys_mod_count>
         <sys_name>Create_JIRA_Software_Issue</sys_name>
         <sys_package display_value="Jan's JIRA integration" source="x_123107_jan_s_jir">72b91ccb0f91030053083b8ce1050e06</sys_package>
         <sys_policy/>
         <sys_scope display_value="Jan's JIRA integration">72b91ccb0f91030053083b8ce1050e06</sys_scope>
         <sys_update_name>sys_ui_page_cd4cd08f0f91030053083b8ce1050e15</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-09-25 19:06:35</sys_updated_on>
+        <sys_updated_on>2017-09-26 22:19:41</sys_updated_on>
     </sys_ui_page>
 </record_update>
